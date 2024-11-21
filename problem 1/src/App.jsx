@@ -1,10 +1,11 @@
-
+import { Container } from "./styleComponent";
 
 function App() {
-
   return (
-    <h1>hello</h1>
-  )
+    <Container>
+      <h1>hello</h1>
+    </Container>
+  );
 }
 
-export default App
+export default App;
