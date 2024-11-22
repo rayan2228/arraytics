@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 const Button = ({ variant, children, onClick, ...props }) => {
   // Define the styles for each variant
   const styles = {
-    "icon-arrow-primary": { backgroundColor: "blue", color: "white" },
-    primary: { backgroundColor: "blue", color: "white" },
-    secondary: { backgroundColor: "gray", color: "black" },
-    default: { backgroundColor: "gray", color: "black" },
+    "icon-arrow-primary": { backgroundcolor: "blue", color: "white" },
+    primary: { backgroundcolor: "blue", color: "white" },
+    secondary: { backgroundcolor: "gray", color: "black" },
+    default: { backgroundcolor: "gray", color: "black" },
   };
 
   // Get the style based on the variant or fallback to default

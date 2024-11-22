@@ -1,11 +1,7 @@
-import { Container } from "./styleComponent";
+import PricingContainer from "./components/pricing/PricingContainer";
 
 function App() {
-  return (
-    <Container>
-      <h1>hello</h1>
-    </Container>
-  );
+  return <PricingContainer />;
 }
 
 export default App;
