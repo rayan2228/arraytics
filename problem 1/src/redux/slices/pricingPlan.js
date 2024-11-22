@@ -12,7 +12,11 @@ export const pricingPlanSlice = createSlice({
     name: "pricingPlan",
     initialState,
     reducers: {
-
+        setBillingType: (state, { payload }) => {
+            state.billingType = payload;
+        },
     },
 });
+
+export const { setBillingType } = pricingPlanSlice.actions;
 export default pricingPlanSlice.reducer;

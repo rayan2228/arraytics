@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { Flex, Button } from "../../styleComponent";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { css } from "@emotion/react";
+import { setBillingType } from "../../redux/slices/pricingPlan";
 const PricingInfo = () => {
   const {
     plansData: { plansInfo },
     billingType,
   } = useSelector((state) => state.pricingPlan);
-
+  const dispatch = useDispatch();
   return (
     <Flex justifyContent="center" gap="20px" alignItems="center">
       {Object.keys(plansInfo).map((key, index) => (
@@ -17,14 +18,21 @@ const PricingInfo = () => {
             index === 0 &&
             css`
               border-right: 2px solid #c6d7e3;
+              padding-right: 20px;
             `
           }
+          onClick={() => dispatch(setBillingType(key))}
         >
           <Button
             fontSize="16px"
-            fontWeight="400"
-            color="#49687e"
-            padding="0 20px 0px 0px"
+            fontWeight={billingType === key ? "600" : "400"}
+            color={billingType === key ? "#b78deb" : "#49687e"}
+            css={
+              billingType === key &&
+              css`
+                border-bottom: 2px solid #b78deb;
+              `
+            }
           >
             {plansInfo[key].title}
           </Button>
@@ -33,7 +41,7 @@ const PricingInfo = () => {
               fontSize="16px"
               fontWeight="400"
               color="#49687e"
-              padding="0 20px 0px 0px"
+              margin="0px 20px"
             >
               {plansInfo[key].sub_title}
             </Button>
@@ -46,6 +54,7 @@ const PricingInfo = () => {
               backgroundColor="#f1e9fb"
               padding="5px 12px"
               borderRadius="40px"
+              margin="0px 20px"
             >
               {plansInfo[key].discount}
             </Button>
