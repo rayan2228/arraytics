@@ -1,19 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { Container } from "../../styleComponent";
+import PlansWrapper from "./PlansWrapper";
 import PricingInfo from "./PricingInfo";
 import { css } from "@emotion/react";
 
 const PricingContainer = () => {
   return (
-    <Container>
-      <div
-        css={css`
-          margin-top: 50px;
-        `}
-      >
+    <section
+      css={css`
+        margin-top: 50px;
+      `}
+    >
+      <Container>
         <PricingInfo />
-      </div>
-    </Container>
+        <PlansWrapper />
+      </Container>
+    </section>
   );
 };
 

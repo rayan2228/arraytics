@@ -32,6 +32,7 @@ const Button = styled.button`
   text-align: ${({ textAlign }) => textAlign};
   cursor: ${({ cursor }) => cursor || "pointer"};
   margin: ${({ margin }) => margin};
+  display: ${({ display }) => display || "inline-block"};
 `;
 
 const Title = styled.h2`
@@ -41,6 +42,34 @@ const Title = styled.h2`
   text-align: ${({ textAlign }) => textAlign};
 `;
 
+const PlanItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding:24px 20px;
+  border: 1px solid #eaeff2;
+  border-top:8px solid ${({ bcolor }) => bcolor || "transparent"};
+  border-radius: 8px;
+  background-color: white;
+  min-width: 300px;
+`;
+
+const FeaturesListDescription = styled.div`
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    bottom: 120%;
+    box-shadow: 0 0 18px 0 rgba(73, 104, 126, .2);
+    color: #49687e;
+    /* display: none; */
+    font-size: 14px;
+    left: -10px;
+    min-width: 224px;
+    padding: 5px 10px;
+    position: absolute;
+    white-space: normal;
+    word-break: break-word;
+    z-index: 10;
+`
 
 
-export { Container, Grid, Flex, Button, Title };
+export { Container, Grid, Flex, Button, Title, PlanItem, FeaturesListDescription };
