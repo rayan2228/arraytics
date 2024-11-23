@@ -71,5 +71,31 @@ const FeaturesListDescription = styled.span`
     z-index: 10;
 `
 
+const DropdownWrapper = styled.div`
+  position: relative;
+  max-width: 300px;
+  margin: 10px 0;
+`;
 
-export { Container, Grid, Flex, Button, Title, PlanItem, FeaturesListDescription };
+const Selected = styled.div`
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
+const Options = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  background: white;
+  z-index: 10;
+  border-radius: 4px;
+  max-height: 150px;
+  overflow-y: auto;
+`;
+
+
+export { Container, Grid, Flex, Button, Title, PlanItem, FeaturesListDescription, DropdownWrapper, Selected, Options };

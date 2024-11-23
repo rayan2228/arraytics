@@ -5,19 +5,14 @@ import PlanInfo from "./PlanInfo";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
 
-import { getDuplicatePlans, getUniquePlans } from "../../helpers";
+import { getUniquePlans } from "../../helpers";
 const PlansWrapper = () => {
-  const { plans, features } = useSelector(
-    (state) => state.pricingPlan.plansData
-  );
+  const { plans } = useSelector((state) => state.pricingPlan.plansData);
   const uniquePlans = useMemo(() => getUniquePlans(plans), [plans]);
-  const duplicatePlans = useMemo(() => getDuplicatePlans(plans), [plans]);
-  console.log(duplicatePlans);
-  
   return (
     <Grid templateColumns="repeat(4, 1fr)" gap="20px">
       {uniquePlans.map((plan, index) => (
-        <PlanInfo key={index} plan={plan} features={features} />
+        <PlanInfo key={index} plan={plan} />
       ))}
     </Grid>
   );

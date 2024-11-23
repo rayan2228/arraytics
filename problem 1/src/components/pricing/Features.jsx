@@ -1,12 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import {
-  Button,
   FeaturesListDescription,
   Flex,
   Title,
 } from "../../styleComponent";
-const Features = () => {
+const Features = ({ features }) => {
   return (
     <div>
       <Title>Free includes:</Title>
@@ -26,18 +25,7 @@ const Features = () => {
           </Flex>
         </li>
       </ul>
-      <Button
-        as="a"
-        href="/pricing"
-        textAlign="center"
-        display="block"
-        margin="auto"
-        padding="10px 0px"
-        backgroundColor="#b78deb"
-        borderRadius="8px"
-      >
-        Select Plan
-      </Button>
+     
     </div>
   );
 };
