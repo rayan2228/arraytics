@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Container } from "../../styleComponent";
+import { Container, Flex } from "../../styleComponent";
 import PlansWrapper from "./PlansWrapper";
 import PricingInfo from "./PricingInfo";
 import { css } from "@emotion/react";
@@ -12,8 +12,10 @@ const PricingContainer = () => {
       `}
     >
       <Container>
-        <PricingInfo />
-        <PlansWrapper />
+        <Flex flexDirection="column" gap="40px">
+          <PricingInfo />
+          <PlansWrapper />
+        </Flex>
       </Container>
     </section>
   );

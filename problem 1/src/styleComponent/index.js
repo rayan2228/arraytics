@@ -53,14 +53,14 @@ const PlanItem = styled.div`
   min-width: 300px;
 `;
 
-const FeaturesListDescription = styled.div`
+const FeaturesListDescription = styled.span`
     background: #fff;
     border: 1px solid #fff;
     border-radius: 4px;
     bottom: 120%;
     box-shadow: 0 0 18px 0 rgba(73, 104, 126, .2);
     color: #49687e;
-    /* display: none; */
+    display: none;
     font-size: 14px;
     left: -10px;
     min-width: 224px;

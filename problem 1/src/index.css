@@ -1,3 +1,6 @@
+/* import google font */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+/* import google font */
 /* deal with default browser styles */
 *,
 *::before,
@@ -63,9 +66,7 @@ select {
 
 /* deal with default browser styles */
 
-/* import google font */
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-/* import google font */
+
 
 /* set the root css */
 :root {
