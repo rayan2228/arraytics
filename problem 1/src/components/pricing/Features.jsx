@@ -1,31 +1,29 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import {
-  FeaturesListDescription,
-  Flex,
-  Title,
-} from "../../styleComponent";
-const Features = ({ features }) => {
+import { FeaturesListDescription, Flex, Title } from "../../styleComponent";
+const Features = ({ features, plansName }) => {
   return (
     <div>
-      <Title>Free includes:</Title>
+      <Title>
+        {plansName === "Free" ? "Free includes:" : "Everything in free plus:"}
+      </Title>
       <ul>
-        <li
-          css={css`
-            position: relative;
-          `}
-        >
-          <Flex>
-            <Title>Unlimited widgets</Title>
-            <FeaturesListDescription>
-              Add any number of widgets. E.g., Create separate widgets for
-              desktop and mobile, or show different widgets for different
-              countries or different pages
-            </FeaturesListDescription>
-          </Flex>
-        </li>
+        {features.map((feature) => (
+          <li
+            css={css`
+              position: relative;
+            `}
+            key={feature.feature_title}
+          >
+            <Flex>
+              <Title>{feature.feature_title}</Title>
+              <FeaturesListDescription>
+                {feature.feature_desc}
+              </FeaturesListDescription>
+            </Flex>
+          </li>
+        ))}
       </ul>
-     
     </div>
   );
 };

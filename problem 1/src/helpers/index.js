@@ -25,4 +25,17 @@ const getDuplicatePlans = (plans) => {
 
     return duplicates;
 };
-export { getUniquePlans, getDuplicatePlans }
+
+
+
+
+const getFeatures = (planName, features) => {
+    let filteredFeatures
+    if (planName === "Free") {
+        filteredFeatures = features.filter((feature) => feature.is_pro == 0)
+    } else {
+        filteredFeatures = features.filter((feature) => feature.is_pro == 1)
+    }
+    return filteredFeatures
+}
+export { getUniquePlans, getDuplicatePlans, getFeatures }
