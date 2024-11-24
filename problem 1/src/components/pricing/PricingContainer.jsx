@@ -12,10 +12,8 @@ const PricingContainer = () => {
       `}
     >
       <Container>
-        <Flex flexDirection="column" gap="40px">
           <PricingInfo />
           <PlansWrapper />
-        </Flex>
       </Container>
     </section>
   );

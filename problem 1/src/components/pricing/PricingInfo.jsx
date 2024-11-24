@@ -10,7 +10,7 @@ const PricingInfo = () => {
   } = useSelector((state) => state.pricingPlan);
   const dispatch = useDispatch();
   return (
-    <Flex justifyContent="center" gap="20px" alignItems="center">
+    <Flex justifyContent="center" gap="20px" alignItems="center" margin="40px 0px">
       {Object.keys(plansInfo).map((key, index) => (
         <div
           key={key}

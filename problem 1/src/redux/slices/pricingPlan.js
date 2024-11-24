@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import data from '../../server/data.json'
+import data from '../../data/data.json'
 const initialState = {
     billingType: '1_year',
     plansData: {

@@ -1,27 +1,29 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { FeaturesListDescription, Flex, Title } from "../../styleComponent";
-const Features = ({ features, plansName }) => {
+import {
+  FeaturesList,
+  FeaturesListDescription,
+  Flex,
+  Title,
+} from "../../styleComponent";
+const Features = ({ features, planName }) => {
   return (
-    <div>
-      <Title>
-        {plansName === "Free" ? "Free includes:" : "Everything in free plus:"}
+    <div css={css`margin-bottom: 20px;`}>
+      <Title fontWeight="500" fontSize="16px" padding="8px 0px">
+        {planName === "Free" ? "Free includes:" : "Everything in free plus:"}
       </Title>
       <ul>
         {features.map((feature) => (
-          <li
-            css={css`
-              position: relative;
-            `}
-            key={feature.feature_title}
-          >
+          <FeaturesList key={feature.feature_title}>
             <Flex>
               <Title>{feature.feature_title}</Title>
-              <FeaturesListDescription>
-                {feature.feature_desc}
-              </FeaturesListDescription>
+              <FeaturesListDescription
+                dangerouslySetInnerHTML={{
+                  __html: feature.feature_desc,
+                }}
+              />
             </Flex>
-          </li>
+          </FeaturesList>
         ))}
       </ul>
     </div>

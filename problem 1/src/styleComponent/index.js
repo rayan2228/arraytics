@@ -19,6 +19,8 @@ const Flex = styled.div`
   flex-wrap: ${({ flexWrap }) => flexWrap};
   gap: ${({ gap }) => gap};
   flex-direction: ${({ flexDirection }) => flexDirection};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
 `;
 
 const Button = styled.button`
@@ -33,13 +35,23 @@ const Button = styled.button`
   cursor: ${({ cursor }) => cursor || "pointer"};
   margin: ${({ margin }) => margin};
   display: ${({ display }) => display || "inline-block"};
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: ${({ hoverBackgroundColor }) => hoverBackgroundColor};
+  }
 `;
 
 const Title = styled.h2`
   font-size: ${({ fontSize }) => fontSize || "14px"};
-  color: ${({ color }) => color};
-  font-weight: ${({ fontWeight }) => fontWeight};
+  color: ${({ color }) => color || "#49687e"};
+  font-weight: ${({ fontWeight }) => fontWeight || "400"};
   text-align: ${({ textAlign }) => textAlign};
+  padding: ${({ padding }) => padding};
+  line-height: ${({ lineHeight }) => lineHeight || "24px"};
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: ${({ hoverBackgroundColor }) => hoverBackgroundColor };
+  }
 `;
 
 const PlanItem = styled.div`
@@ -50,9 +62,20 @@ const PlanItem = styled.div`
   border-top:8px solid ${({ bcolor }) => bcolor || "transparent"};
   border-radius: 8px;
   background-color: white;
-  min-width: 300px;
+  position: relative;
 `;
 
+
+
+const FeaturesList = styled.li`
+    position: relative;
+    padding: 5px 0px;
+    cursor: pointer;
+    &:hover span {
+      visibility: visible;
+      opacity: 1;
+    }
+`
 const FeaturesListDescription = styled.span`
     background: #fff;
     border: 1px solid #fff;
@@ -60,7 +83,8 @@ const FeaturesListDescription = styled.span`
     bottom: 120%;
     box-shadow: 0 0 18px 0 rgba(73, 104, 126, .2);
     color: #49687e;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     font-size: 14px;
     left: -10px;
     min-width: 224px;
@@ -69,33 +93,32 @@ const FeaturesListDescription = styled.span`
     white-space: normal;
     word-break: break-word;
     z-index: 10;
+    transition: all .3s ease-in-out;
 `
 
 const DropdownWrapper = styled.div`
   position: relative;
-  max-width: 300px;
-  margin: 10px 0;
 `;
 
 const Selected = styled.div`
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 2px 8px;
+  border:${({ border }) => border};
   border-radius: 4px;
   cursor: pointer;
 `;
 
-const Options = styled.div`
+const Options = styled.ul`
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 0px;
   width: 100%;
   border: 1px solid #ddd;
   background: white;
   z-index: 10;
-  border-radius: 4px;
-  max-height: 150px;
+  border-radius: 10px;
   overflow-y: auto;
+  transition: all 0.3s ease-in-out;
 `;
 
 
-export { Container, Grid, Flex, Button, Title, PlanItem, FeaturesListDescription, DropdownWrapper, Selected, Options };
+export { Container, Grid, Flex, Button, Title, PlanItem, FeaturesListDescription, DropdownWrapper, Selected, Options, FeaturesList };
