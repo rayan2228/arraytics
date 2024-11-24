@@ -21,7 +21,7 @@ const Features = ({ features, planName }) => {
                 dangerouslySetInnerHTML={{
                   __html: feature.feature_desc,
                 }}
-              />
+              /> 
             </Flex>
           </FeaturesList>
         ))}

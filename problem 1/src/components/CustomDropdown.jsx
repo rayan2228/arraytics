@@ -10,14 +10,11 @@ const CustomDropdown = ({ items, selected, onSelect }) => {
       onSelect(items[0]);
     }
   }, [items, selected, onSelect]);
-  console.log(colors[selected?.name]);
-
   return (
-    <DropdownWrapper>
-      <Selected
-        onClick={() => setIsOpen((prev) => !prev)}
-        border={`1px solid ${colors[selected?.name]?.backgroundColor}`}
-      >
+    <DropdownWrapper
+      border={`1px solid ${colors[selected?.name]?.backgroundColor}`}
+    >
+      <Selected onClick={() => setIsOpen((prev) => !prev)}>
         {selected && (
           <Title
             fontSize="13px"
@@ -26,6 +23,37 @@ const CustomDropdown = ({ items, selected, onSelect }) => {
               __html: selected.title.split(" visitors")[0] + " visitor...",
             }}
           />
+        )}
+        {isOpen ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={3}
+            stroke={`${colors[selected?.name]?.backgroundColor}`}
+            width={"15px"}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m4.5 15.75 7.5-7.5 7.5 7.5"
+            />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={3}
+            stroke={`${colors[selected?.name]?.backgroundColor}`}
+            width={"15px"}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m19.5 8.25-7.5 7.5-7.5-7.5"
+            />
+          </svg>
         )}
       </Selected>
 

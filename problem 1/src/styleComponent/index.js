@@ -50,7 +50,7 @@ const Title = styled.h2`
   line-height: ${({ lineHeight }) => lineHeight || "24px"};
   transition: all 0.3s ease-in-out;
   &:hover {
-    background-color: ${({ hoverBackgroundColor }) => hoverBackgroundColor };
+    background-color: ${({ hoverBackgroundColor }) => hoverBackgroundColor};
   }
 `;
 
@@ -68,6 +68,7 @@ const PlanItem = styled.div`
 
 
 const FeaturesList = styled.li`
+    list-style-type: none;
     position: relative;
     padding: 5px 0px;
     cursor: pointer;
@@ -78,7 +79,6 @@ const FeaturesList = styled.li`
 `
 const FeaturesListDescription = styled.span`
     background: #fff;
-    border: 1px solid #fff;
     border-radius: 4px;
     bottom: 120%;
     box-shadow: 0 0 18px 0 rgba(73, 104, 126, .2);
@@ -86,7 +86,7 @@ const FeaturesListDescription = styled.span`
     visibility: hidden;
     opacity: 0;
     font-size: 14px;
-    left: -10px;
+    right: -12px;
     min-width: 224px;
     padding: 5px 10px;
     position: absolute;
@@ -98,26 +98,30 @@ const FeaturesListDescription = styled.span`
 
 const DropdownWrapper = styled.div`
   position: relative;
+  min-width: 88%;
+  border:${({ border }) => border};
+  padding: 2px 0px;
 `;
 
 const Selected = styled.div`
   padding: 2px 8px;
-  border:${({ border }) => border};
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Options = styled.ul`
   position: absolute;
   top: 100%;
   left: 0px;
-  width: 100%;
-  border: 1px solid #ddd;
+  width: 110%;
+  border: 1px solid #f0f0f0;
   background: white;
   z-index: 10;
   border-radius: 10px;
-  overflow-y: auto;
   transition: all 0.3s ease-in-out;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
 `;
 
 

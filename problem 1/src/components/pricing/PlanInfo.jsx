@@ -1,6 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { useSelector } from "react-redux";
-import { Button, Flex, PlanItem, Title } from "../../styleComponent";
+import {
+  Button,
+  FeaturesList,
+  FeaturesListDescription,
+  Flex,
+  PlanItem,
+  Title,
+} from "../../styleComponent";
 import Features from "./Features";
 import { useMemo, useState } from "react";
 import { getDuplicatePlans, getFeatures } from "../../helpers";
@@ -92,26 +99,85 @@ const PlanInfo = ({ plan }) => {
           )}
         </Flex>
       </Flex>
-      <div css={css`margin-bottom: 20px; margin-top: 10px;`}>
-      {isDuplicatePlan.length > 0 ? (
-        <CustomDropdown
-          plan={plan.name}
-          items={isDuplicatePlan}
-          selected={selectedPlan}
-          onSelect={setSelectedPlan}
-        />
-      ) : (
-        <Title
-          fontSize="13px"
-          color={colors[plan.name].backgroundColor}
-          padding="2px 8px"
-          css={css`
-            background-color: ${colors[plan.name].lightBackgroundColor};
-            border-radius: 50px;
-          `}
-          dangerouslySetInnerHTML={{ __html: plan.title }}
-        />
-      )}
+      <div
+        css={css`
+          margin-bottom: 20px;
+          margin-top: 10px;
+        `}
+      >
+        {isDuplicatePlan.length > 0 ? (
+          <Flex justifyContent="space-between" alignItems="center" >
+            <CustomDropdown
+              plan={plan.name}
+              items={isDuplicatePlan}
+              selected={selectedPlan}
+              onSelect={setSelectedPlan}
+            />
+            <FeaturesList>
+              <Flex>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke={`${colors[plan.name].backgroundColor}`}
+                  width={"20px"}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                  />
+                </svg>
+                <FeaturesListDescription
+                  dangerouslySetInnerHTML={{
+                    __html: plan.text,
+                  }}
+                />
+              </Flex>
+            </FeaturesList>
+          </Flex>
+        ) : (
+          <Flex
+            justifyContent="space-between"
+            alignItems="center"
+            padding="2px 8px"
+            css={css`
+              background-color: ${colors[plan.name].lightBackgroundColor};
+              border-radius: 50px;
+            `}
+          >
+            <Title
+              fontSize="13px"
+              padding="2px 4px "
+              color={colors[plan.name].backgroundColor}
+              dangerouslySetInnerHTML={{ __html: plan.title }}
+            />
+            <FeaturesList>
+              <Flex>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke={`${colors[plan.name].backgroundColor}`}
+                  width={"20px"}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                  />
+                </svg>
+                <FeaturesListDescription
+                  dangerouslySetInnerHTML={{
+                    __html: plan.text,
+                  }}
+                />
+              </Flex>
+            </FeaturesList> 
+          </Flex>
+        )}
       </div>
       <Features features={filteredFeatures} planName={plan.name} />
       <Button
