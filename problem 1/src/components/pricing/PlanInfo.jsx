@@ -7,6 +7,7 @@ import {
   Flex,
   PlanItem,
   Title,
+  VisitorDetailsComponent
 } from "../../styleComponent";
 import Features from "./Features";
 import { useMemo, useState } from "react";
@@ -106,7 +107,7 @@ const PlanInfo = ({ plan }) => {
         `}
       >
         {isDuplicatePlan.length > 0 ? (
-          <Flex justifyContent="space-between" alignItems="center" >
+          <VisitorDetailsComponent gap="10px" alignItems="center" >
             <CustomDropdown
               plan={plan.name}
               items={isDuplicatePlan}
@@ -136,10 +137,9 @@ const PlanInfo = ({ plan }) => {
                 />
               </Flex>
             </FeaturesList>
-          </Flex>
+          </VisitorDetailsComponent>
         ) : (
-          <Flex
-            justifyContent="space-between"
+          <VisitorDetailsComponent
             alignItems="center"
             padding="2px 8px"
             css={css`
@@ -176,7 +176,7 @@ const PlanInfo = ({ plan }) => {
                 />
               </Flex>
             </FeaturesList> 
-          </Flex>
+          </VisitorDetailsComponent>
         )}
       </div>
       <Features features={filteredFeatures} planName={plan.name} />

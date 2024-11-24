@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Flex, Grid } from "../../styleComponent";
+import { PlanWrapperComponent } from "../../styleComponent";
 import PlanInfo from "./PlanInfo";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
@@ -16,11 +16,11 @@ const PlansWrapper = () => {
         margin: auto;
       `}
     >
-      <Grid templateColumns="repeat(4, 1fr)" gap="20px">
+      <PlanWrapperComponent templateColumns="repeat(4, 1fr)" gap="20px">
         {uniquePlans.map((plan, index) => (
           <PlanInfo key={index} plan={plan} />
         ))}
-      </Grid>
+      </PlanWrapperComponent>
     </section>
   );
 };

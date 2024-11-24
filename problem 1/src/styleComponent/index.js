@@ -3,6 +3,9 @@ import styled from "@emotion/styled";
 const Container = styled.div`
   max-width: 1320px;
   margin: auto;
+  @media (max-width:1200px) {
+    padding: 0px 8px;
+  }
 `;
 
 const Grid = styled.div`
@@ -40,6 +43,27 @@ const Button = styled.button`
     background-color: ${({ hoverBackgroundColor }) => hoverBackgroundColor};
   }
 `;
+const PricingInfoComponent = styled(Flex)`
+  @media (max-width:400px) {
+    justify-content: space-around;
+  }
+`;
+const PricingInfoButton = styled(Button)`
+  @media (max-width:575px) {
+    font-size: 14px;
+    margin: 0px 2px;
+  }
+`;
+const PlanWrapperComponent = styled(Grid)`
+  @media (min-width: 320px) and ( max-width:575px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @media (min-width: 576px) and ( max-width:1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+
 
 const Title = styled.h2`
   font-size: ${({ fontSize }) => fontSize || "14px"};
@@ -96,9 +120,13 @@ const FeaturesListDescription = styled.span`
     transition: all .3s ease-in-out;
 `
 
+const VisitorDetailsComponent = styled(Flex)`
+  max-width: max-content;
+`;
+
+
 const DropdownWrapper = styled.div`
   position: relative;
-  min-width: 88%;
   border:${({ border }) => border};
   padding: 2px 0px;
 `;
@@ -115,7 +143,7 @@ const Options = styled.ul`
   position: absolute;
   top: 100%;
   left: 0px;
-  width: 110%;
+  min-width: max-content;
   border: 1px solid #f0f0f0;
   background: white;
   z-index: 10;
@@ -125,4 +153,4 @@ const Options = styled.ul`
 `;
 
 
-export { Container, Grid, Flex, Button, Title, PlanItem, FeaturesListDescription, DropdownWrapper, Selected, Options, FeaturesList };
+export { Container, Grid, Flex, Button, Title, PlanItem, FeaturesListDescription, DropdownWrapper, Selected, Options, FeaturesList, PricingInfoComponent, PricingInfoButton, PlanWrapperComponent, VisitorDetailsComponent };

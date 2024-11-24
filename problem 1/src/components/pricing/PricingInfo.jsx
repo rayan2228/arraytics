@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Flex, Button } from "../../styleComponent";
+import { PricingInfoButton, PricingInfoComponent } from "../../styleComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { css } from "@emotion/react";
 import { setBillingType } from "../../redux/slices/pricingPlan";
@@ -10,7 +10,12 @@ const PricingInfo = () => {
   } = useSelector((state) => state.pricingPlan);
   const dispatch = useDispatch();
   return (
-    <Flex justifyContent="center" gap="20px" alignItems="center" margin="40px 0px">
+    <PricingInfoComponent
+      justifyContent="center"
+      gap="20px"
+      alignItems="center"
+      margin="40px 0px"
+    >
       {Object.keys(plansInfo).map((key, index) => (
         <div
           key={key}
@@ -23,7 +28,7 @@ const PricingInfo = () => {
           }
           onClick={() => dispatch(setBillingType(key))}
         >
-          <Button
+          <PricingInfoButton
             fontSize="16px"
             fontWeight={billingType === key ? "600" : "400"}
             color={billingType === key ? "#b78deb" : "#49687e"}
@@ -35,19 +40,19 @@ const PricingInfo = () => {
             }
           >
             {plansInfo[key].title}
-          </Button>
+          </PricingInfoButton>
           {plansInfo[key].sub_title && (
-            <Button
+            <PricingInfoButton
               fontSize="16px"
               fontWeight="400"
               color="#49687e"
               margin="0px 20px"
             >
               {plansInfo[key].sub_title}
-            </Button>
+            </PricingInfoButton>
           )}
           {plansInfo[key].discount && (
-            <Button
+            <PricingInfoButton
               fontSize="16px"
               fontWeight="400"
               color="#49687e"
@@ -57,11 +62,11 @@ const PricingInfo = () => {
               margin="0px 20px"
             >
               {plansInfo[key].discount}
-            </Button>
+            </PricingInfoButton>
           )}
         </div>
       ))}
-    </Flex>
+    </PricingInfoComponent>
   );
 };
 
