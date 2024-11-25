@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Container, Flex } from "../../styleComponent";
+import { Container } from "../../styleComponent";
 import PlansWrapper from "./PlansWrapper";
 import PricingInfo from "./PricingInfo";
 import { css } from "@emotion/react";

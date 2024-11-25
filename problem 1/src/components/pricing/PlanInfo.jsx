@@ -131,7 +131,8 @@ const PlanInfo = ({ plan }) => {
                   />
                 </svg>
                 <FeaturesListDescription
-                right="-25px"
+                  afterRight="10%"
+                  right="-25px"
                   dangerouslySetInnerHTML={{
                     __html: plan.text,
                   }}
@@ -172,6 +173,7 @@ const PlanInfo = ({ plan }) => {
                 </svg>
                 <FeaturesListDescription
                   right="-22px"
+                  afterRight="10%"
                   dangerouslySetInnerHTML={{
                     __html: plan.text,
                   }}

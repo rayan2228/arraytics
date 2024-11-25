@@ -28,6 +28,7 @@ const Features = ({ features, plan, selectedPlan }) => {
               <FeaturesListDescription
                 left="50%"
                 transform="translateX(-50%)"
+                afterLeft="10%"
                 dangerouslySetInnerHTML={{
                   __html: selectedPlan?.text || plan.text,
                 }}
@@ -42,6 +43,7 @@ const Features = ({ features, plan, selectedPlan }) => {
               <FeaturesListDescription
                 left="50%"
                 transform="translateX(-50%)"
+                afterLeft="10%"
                 dangerouslySetInnerHTML={{
                   __html: feature.feature_desc,
                 }}

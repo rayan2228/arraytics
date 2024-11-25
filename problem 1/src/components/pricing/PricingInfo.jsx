@@ -1,57 +1,71 @@
 /** @jsxImportSource @emotion/react */
-import { PricingInfoButton, PricingInfoComponent } from "../../styleComponent";
+import { Flex, PricingInfoButton } from "../../styleComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { css } from "@emotion/react";
 import { setBillingType } from "../../redux/slices/pricingPlan";
+import { useCallback } from "react";
+
+const borderStyle = css`
+  border-right: 2px solid #c6d7e3;
+  padding-right: 20px;
+`;
+
 const PricingInfo = () => {
+  const dispatch = useDispatch();
   const {
     plansData: { plansInfo },
     billingType,
   } = useSelector((state) => state.pricingPlan);
-  const dispatch = useDispatch();
+
+  const handleBillingTypeChange = (key) => {
+    dispatch(setBillingType(key));
+  };
+
+  const getButtonStyles = useCallback(
+    (isActive) =>
+      css`
+        font-weight: ${isActive ? "600" : "400"};
+        color: ${isActive ? "#b78deb" : "#49687e"};
+        ${isActive &&
+        css`
+          border-bottom: 2px solid #b78deb;
+        `}
+      `,
+    []
+  );
+
   return (
-    <PricingInfoComponent
+    <Flex
       justifyContent="center"
       gap="20px"
       alignItems="center"
       margin="40px 0px"
     >
-      {Object.keys(plansInfo).map((key, index) => (
+      {Object.entries(plansInfo).map(([key, info], index) => (
         <div
           key={key}
-          css={
-            index === 0 &&
-            css`
-              border-right: 2px solid #c6d7e3;
-              padding-right: 20px;
-            `
-          }
-          onClick={() => dispatch(setBillingType(key))}
+          css={index === 0 && borderStyle}
+          onClick={() => handleBillingTypeChange(key)}
         >
           <PricingInfoButton
             fontSize="16px"
-            fontWeight={billingType === key ? "600" : "400"}
-            color={billingType === key ? "#b78deb" : "#49687e"}
-            css={
-              billingType === key &&
-              css`
-                border-bottom: 2px solid #b78deb;
-              `
-            }
+            css={getButtonStyles(billingType === key)}
           >
-            {plansInfo[key].title}
+            {info.title}
           </PricingInfoButton>
-          {plansInfo[key].sub_title && (
+
+          {info.sub_title && (
             <PricingInfoButton
               fontSize="16px"
               fontWeight="400"
               color="#49687e"
               margin="0px 20px"
             >
-              {plansInfo[key].sub_title}
+              {info.sub_title}
             </PricingInfoButton>
           )}
-          {plansInfo[key].discount && (
+
+          {info.discount && (
             <PricingInfoButton
               fontSize="16px"
               fontWeight="400"
@@ -61,12 +75,12 @@ const PricingInfo = () => {
               borderRadius="40px"
               margin="0px 20px"
             >
-              {plansInfo[key].discount}
+              {info.discount}
             </PricingInfoButton>
           )}
         </div>
       ))}
-    </PricingInfoComponent>
+    </Flex>
   );
 };
 

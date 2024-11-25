@@ -43,12 +43,12 @@ const Button = styled.button`
     background-color: ${({ hoverBackgroundColor }) => hoverBackgroundColor};
   }
 `;
-const PricingInfoComponent = styled(Flex)`
-  @media (max-width:400px) {
-    /* justify-content: space-around; */
-  }
-`;
+
 const PricingInfoButton = styled(Button)`
+  font-size:"16px";
+  font-weight:"400";
+  color:"red";
+  margin:"0px 20px";
   @media (max-width:400px) {
     font-size: 14px;
   }
@@ -122,6 +122,19 @@ const FeaturesListDescription = styled.span`
     word-break: break-word;
     z-index: 10;
     transition: all .3s ease-in-out;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: ${({ afterLeft }) => afterLeft};
+      right: ${({ afterRight }) => afterRight};
+      transform: translate(-50%, -50%) rotate(45deg);
+      border: 5px solid #fff;
+      background-color: #fff;
+    }
+    @media (max-width:1200px) {
+      width: 100%;
+    }
 `
 
 const VisitorDetailsComponent = styled(Flex)`
@@ -157,4 +170,4 @@ const Options = styled.ul`
 `;
 
 
-export { Container, Grid, Flex, Button, Title, PlanItem, FeaturesListDescription, DropdownWrapper, Selected, Options, FeaturesList, PricingInfoComponent, PricingInfoButton, PlanWrapperComponent, VisitorDetailsComponent };
+export { Container, Grid, Flex, Button, Title, PlanItem, FeaturesListDescription, DropdownWrapper, Selected, Options, FeaturesList, PricingInfoButton, PlanWrapperComponent, VisitorDetailsComponent };
