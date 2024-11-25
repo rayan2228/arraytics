@@ -2,16 +2,15 @@
 import { useSelector } from "react-redux";
 import {
   Button,
-  FeaturesList,
-  FeaturesListDescription,
   Flex,
   PlanItem,
   Title,
   VisitorDetailsComponent,
 } from "../../styleComponent";
+import FeatureList from "./FeatureList";
 import Features from "./Features";
 import { useMemo, useState } from "react";
-import { getDuplicatePlans, getFeatures } from "../../helpers";
+import { getDuplicatePlans, getFeatures, sanitizeHTML } from "../../helpers";
 import CustomDropdown from "../CustomDropdown";
 import { useEffect } from "react";
 import { css } from "@emotion/react";
@@ -71,6 +70,24 @@ const PlanInfo = ({ plan }) => {
     );
   };
 
+  const renderFeaturesList = (text, backgroundColor) => (
+    <FeatureList featureDesc={text} right="-22px" afterRight="10%">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke={backgroundColor}
+        width="20px"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+        />
+      </svg>
+    </FeatureList>
+  );
 
   return (
     <PlanItem bcolor={colors[plan.name].backgroundColor}>
@@ -125,31 +142,7 @@ const PlanInfo = ({ plan }) => {
               selected={selectedPlan}
               onSelect={setSelectedPlan}
             />
-            <FeaturesList>
-              <Flex>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke={`${colors[plan.name].backgroundColor}`}
-                  width={"20px"}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-                  />
-                </svg>
-                <FeaturesListDescription
-                  afterRight="10%"
-                  right="-25px"
-                  dangerouslySetInnerHTML={{
-                    __html: plan.text,
-                  }}
-                />
-              </Flex>
-            </FeaturesList>
+            {renderFeaturesList(plan.text, colors[plan.name].backgroundColor)}
           </VisitorDetailsComponent>
         ) : (
           <VisitorDetailsComponent
@@ -164,33 +157,9 @@ const PlanInfo = ({ plan }) => {
               fontSize="13px"
               padding="2px 4px "
               color={colors[plan.name].backgroundColor}
-              dangerouslySetInnerHTML={{ __html: plan.title }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHTML(plan.title) }}
             />
-            <FeaturesList alignItems="center" padding="2px 8px">
-              <Flex>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke={`${colors[plan.name].backgroundColor}`}
-                  width={"20px"}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-                  />
-                </svg>
-                <FeaturesListDescription
-                  right="-22px"
-                  afterRight="10%"
-                  dangerouslySetInnerHTML={{
-                    __html: plan.text,
-                  }}
-                />
-              </Flex>
-            </FeaturesList>
+            {renderFeaturesList(plan.text, colors[plan.name].backgroundColor)}
           </VisitorDetailsComponent>
         )}
       </div>

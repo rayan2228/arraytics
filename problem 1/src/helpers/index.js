@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 const getUniquePlans = (plans) => {
     const uniquePlansMap = new Map();
     plans.map((plan) => {
@@ -26,9 +27,6 @@ const getDuplicatePlans = (plans) => {
     return duplicates;
 };
 
-
-
-
 const getFeatures = (planName, features) => {
     let filteredFeatures
     if (planName === "Free") {
@@ -38,4 +36,8 @@ const getFeatures = (planName, features) => {
     }
     return filteredFeatures
 }
-export { getUniquePlans, getDuplicatePlans, getFeatures }
+
+const sanitizeHTML = (htmlString) => {
+    return DOMPurify.sanitize(htmlString);
+};
+export { getUniquePlans, getDuplicatePlans, getFeatures, sanitizeHTML }

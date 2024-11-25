@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DropdownWrapper, Options, Selected, Title } from "../styleComponent";
 import { colors } from "../data/allData";
 import { css } from "@emotion/react";
+import { sanitizeHTML } from "../helpers";
 const CustomDropdown = ({ items, selected, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
@@ -20,7 +21,9 @@ const CustomDropdown = ({ items, selected, onSelect }) => {
             fontSize="13px"
             color={colors[selected?.name]?.backgroundColor}
             dangerouslySetInnerHTML={{
-              __html: selected.title.split(" visitors")[0] + " visitor...",
+              __html: sanitizeHTML(
+                selected.title.split(" visitors")[0] + " visitor..."
+              ),
             }}
           />
         )}
@@ -82,7 +85,7 @@ const CustomDropdown = ({ items, selected, onSelect }) => {
                 onSelect(item);
                 setIsOpen(false);
               }}
-              dangerouslySetInnerHTML={{ __html: item.title }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHTML(item.title) }}
             />
           ))}
         </Options>

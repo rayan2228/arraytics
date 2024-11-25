@@ -1,27 +1,27 @@
 /** @jsxImportSource @emotion/react */
-import DOMPurify from "dompurify";
-import {
-  FeaturesList,
-  FeaturesListDescription,
-  Flex,
-  Title,
-} from "../../styleComponent";
-const FeatureList = ({ featureTitle, featureDesc ,children }) => {
-    
-  const sanitizedFeatureTitle = DOMPurify.sanitize(featureTitle);
-  const sanitizedFeatureDesc = DOMPurify.sanitize(featureDesc);
+import { sanitizeHTML } from "../../helpers";
+import { FeaturesList, FeaturesListDescription, Flex, Title } from "../../styleComponent";
+
+const FeatureList = ({ featureTitle, featureDesc, children , right, left, afterLeft, afterRight, transform}) => {
+
+
 
   return (
     <FeaturesList>
       <Flex>
-       
-          <Title dangerouslySetInnerHTML={{ __html: sanitizedFeatureTitle }} />
-        
+        {children || (
+          <Title
+            dangerouslySetInnerHTML={{ __html: sanitizeHTML(featureTitle) }}
+          />
+        )}
+
         <FeaturesListDescription
-          left="50%"
-          transform="translateX(-50%)"
-          afterLeft="10%"
-          dangerouslySetInnerHTML={{ __html: sanitizedFeatureDesc }}
+          right={right}
+          left={left}
+          afterLeft={afterLeft}
+          afterRight={afterRight}
+          transform={transform}
+          dangerouslySetInnerHTML={{ __html: sanitizeHTML(featureDesc) }}
         />
       </Flex>
     </FeaturesList>
