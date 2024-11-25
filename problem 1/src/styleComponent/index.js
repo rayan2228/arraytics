@@ -45,12 +45,14 @@ const Button = styled.button`
 `;
 const PricingInfoComponent = styled(Flex)`
   @media (max-width:400px) {
-    justify-content: space-around;
+    /* justify-content: space-around; */
   }
 `;
 const PricingInfoButton = styled(Button)`
-  @media (max-width:575px) {
+  @media (max-width:400px) {
     font-size: 14px;
+  }
+  @media (max-width:575px) {
     margin: 0px 2px;
   }
 `;
@@ -110,8 +112,10 @@ const FeaturesListDescription = styled.span`
     visibility: hidden;
     opacity: 0;
     font-size: 14px;
-    right: -12px;
-    min-width: 224px;
+    right: ${({ right }) => right || "0"};
+    left: ${({ left }) => left || "auto"};
+    transform: ${({ transform }) => transform}; 
+    min-width: 222px;
     padding: 5px 10px;
     position: absolute;
     white-space: normal;

@@ -7,7 +7,7 @@ import {
   Flex,
   PlanItem,
   Title,
-  VisitorDetailsComponent
+  VisitorDetailsComponent,
 } from "../../styleComponent";
 import Features from "./Features";
 import { useMemo, useState } from "react";
@@ -107,7 +107,7 @@ const PlanInfo = ({ plan }) => {
         `}
       >
         {isDuplicatePlan.length > 0 ? (
-          <VisitorDetailsComponent gap="10px" alignItems="center" >
+          <VisitorDetailsComponent gap="10px" alignItems="center">
             <CustomDropdown
               plan={plan.name}
               items={isDuplicatePlan}
@@ -131,6 +131,7 @@ const PlanInfo = ({ plan }) => {
                   />
                 </svg>
                 <FeaturesListDescription
+                right="-25px"
                   dangerouslySetInnerHTML={{
                     __html: plan.text,
                   }}
@@ -153,7 +154,7 @@ const PlanInfo = ({ plan }) => {
               color={colors[plan.name].backgroundColor}
               dangerouslySetInnerHTML={{ __html: plan.title }}
             />
-            <FeaturesList>
+            <FeaturesList alignItems="center" padding="2px 8px">
               <Flex>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -170,16 +171,21 @@ const PlanInfo = ({ plan }) => {
                   />
                 </svg>
                 <FeaturesListDescription
+                  right="-22px"
                   dangerouslySetInnerHTML={{
                     __html: plan.text,
                   }}
                 />
               </Flex>
-            </FeaturesList> 
+            </FeaturesList>
           </VisitorDetailsComponent>
         )}
       </div>
-      <Features features={filteredFeatures} planName={plan.name} />
+      <Features
+        features={filteredFeatures}
+        plan={plan}
+        selectedPlan={selectedPlan}
+      />
       <Button
         as="a"
         href="/pricing"
