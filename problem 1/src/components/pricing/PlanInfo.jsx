@@ -23,19 +23,54 @@ const PlanInfo = ({ plan }) => {
     billingType,
     plansData: { features, plans },
   } = useSelector((state) => state.pricingPlan);
-  const duplicatePlans = useMemo(() => getDuplicatePlans(plans), [plans]) || [];
-  const isDuplicatePlan =
-    useMemo(
-      () =>
-        duplicatePlans.filter(
-          (duplicatePlan) => duplicatePlan.name === plan.name
-        ),
-      [plan]
-    ) || [];
+  const duplicatePlans = useMemo(() => getDuplicatePlans(plans) || [], [plans]);
+  const isDuplicatePlan = useMemo(
+    () => duplicatePlans.filter((dup) => dup.name === plan.name) || [],
+    [duplicatePlans, plan.name]
+  );
   useEffect(() => {
     const filteredFeatures = getFeatures(plan.name, features);
     setFilteredFeatures(filteredFeatures);
-  }, [plan, features]);
+  }, [plan.name, features]);
+  const renderPlanPrice = () => {
+    const currentPlan = isDuplicatePlan.length > 0 ? selectedPlan : plan;
+    const price = currentPlan?.details[billingType]?.price;
+
+    return (
+      <Title
+        fontSize="32px"
+        fontWeight="600"
+        color={colors[plan.name].backgroundColor}
+      >
+        {price}
+      </Title>
+    );
+  };
+
+  const renderDiscountPrice = () => {
+    if (plan.name === "Free" || billingType !== "2_year") return null;
+
+    const discountedPrice =
+      isDuplicatePlan.length > 0
+        ? selectedPlan?.details["1_year"]?.price
+        : plan.details["1_year"]?.price;
+
+    return (
+      <Title
+        as="span"
+        color="#ff424d"
+        fontSize="12px"
+        css={css`
+          text-decoration: line-through;
+          position: absolute;
+          top: 0;
+        `}
+      >
+        {discountedPrice}/Month
+      </Title>
+    );
+  };
+
 
   return (
     <PlanItem bcolor={colors[plan.name].backgroundColor}>
@@ -66,33 +101,9 @@ const PlanInfo = ({ plan }) => {
           position: relative;
         `}
       >
-        <Title
-          fontSize="32px"
-          fontWeight="600"
-          color={colors[plan.name].backgroundColor}
-        >
-          {isDuplicatePlan.length > 0
-            ? selectedPlan?.details[billingType].price
-            : plan.details[billingType].price}
-        </Title>
+        {renderPlanPrice()}
         <Flex flexDirection="column">
-          {plan.name !== "Free" && billingType === "2_year" && (
-            <Title
-              as={"span"}
-              color="#ff424d"
-              fontSize="12px"
-              css={css`
-                text-decoration: line-through;
-                position: absolute;
-                top: 0px;
-              `}
-            >
-              {isDuplicatePlan.length > 0
-                ? selectedPlan?.details["1_year"].price
-                : plan.details["1_year"].price}
-              /Month
-            </Title>
-          )}
+          {renderDiscountPrice()}
           {plan.name !== "Free" && (
             <Title color="#83a1b7" as={"span"}>
               /Month

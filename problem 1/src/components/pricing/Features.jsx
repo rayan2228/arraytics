@@ -1,12 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import {
-  FeaturesList,
-  FeaturesListDescription,
-  Flex,
-  Title,
-} from "../../styleComponent";
+import { Title } from "../../styleComponent";
+import FeatureList from "./FeatureList";
+
 const Features = ({ features, plan, selectedPlan }) => {
+  const renderPlanDetails = () => {
+    if (plan.name === "Free") return null;
+    const { title, text } = selectedPlan || plan;
+    return <FeatureList featureTitle={title} featureDesc={text} />;
+  };
+
   return (
     <div
       css={css`
@@ -17,42 +20,17 @@ const Features = ({ features, plan, selectedPlan }) => {
         {plan.name === "Free" ? "Free includes:" : "Everything in free plus:"}
       </Title>
       <ul>
-        {plan.name !== "Free" && (
-          <FeaturesList>
-            <Flex>
-              <Title
-                dangerouslySetInnerHTML={{
-                  __html: selectedPlan?.title || plan.title,
-                }}
-              />
-              <FeaturesListDescription
-                left="50%"
-                transform="translateX(-50%)"
-                afterLeft="10%"
-                dangerouslySetInnerHTML={{
-                  __html: selectedPlan?.text || plan.text,
-                }}
-              />
-            </Flex>
-          </FeaturesList>
-        )}
+        {renderPlanDetails()}
         {features.map((feature) => (
-          <FeaturesList key={feature.feature_title}>
-            <Flex>
-              <Title>{feature.feature_title}</Title>
-              <FeaturesListDescription
-                left="50%"
-                transform="translateX(-50%)"
-                afterLeft="10%"
-                dangerouslySetInnerHTML={{
-                  __html: feature.feature_desc,
-                }}
-              />
-            </Flex>
-          </FeaturesList>
+          <FeatureList
+            key={feature.feature_title}
+            featureTitle={feature.feature_title}
+            featureDesc={feature.feature_desc}
+          />
         ))}
       </ul>
     </div>
   );
 };
+
 export default Features;
